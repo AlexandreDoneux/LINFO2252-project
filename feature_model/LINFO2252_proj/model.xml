@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendautolayout" value="true"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="Learning platform">
+			<graphics key="collapsed" value="false"/>
+			<and mandatory="true" name="feedback on task by user">
+				<graphics key="collapsed" value="false"/>
+				<feature mandatory="true" name="star system"/>
+				<feature name="precise feedback"/>
+			</and>
+			<and mandatory="true" name="problem">
+				<graphics key="collapsed" value="false"/>
+				<and mandatory="true" name="parameters">
+					<alt mandatory="true" name="type">
+						<feature name="code problem"/>
+						<feature name="MCQ"/>
+						<feature name="open question"/>
+						<feature name="exact value"/>
+						<feature name="connect the dots"/>
+					</alt>
+					<feature mandatory="true" name="topic"/>
+					<feature name="tag"/>
+					<alt name="awnser limit">
+						<feature name="fixed number"/>
+						<feature name="number per hour"/>
+						<feature name="number per day"/>
+					</alt>
+				</and>
+				<and name="difficulty">
+					<feature mandatory="true" name="teacher rating"/>
+					<feature name="score based"/>
+					<feature name="perceived by students"/>
+				</and>
+				<and mandatory="true" name="automatic grading">
+					<feature mandatory="true" name="get grade"/>
+					<or name="get feedback">
+						<feature name="generic"/>
+						<feature name="AI feedback"/>
+					</or>
+				</and>
+				<feature name="badge"/>
+			</and>
+			<and name="problem help">
+				<description>accessible after a couple of tries</description>
+				<feature mandatory="true" name="predefined hint"/>
+				<feature name="AI hint">
+					<description>limited by premium</description>
+				</feature>
+			</and>
+			<and mandatory="true" name="problem set">
+				<graphics key="collapsed" value="false"/>
+				<or mandatory="true" name="search">
+					<feature name="search by topic"/>
+					<feature name="search by tag"/>
+				</or>
+				<or mandatory="true" name="proposed to the user">
+					<feature name="based on topic"/>
+					<feature name="based on tags"/>
+					<feature name="based on problem type"/>
+					<feature name="based on user feedbacks"/>
+					<feature name="based on user difficulties"/>
+				</or>
+				<feature mandatory="true" name="topics"/>
+				<feature name="tags"/>
+			</and>
+			<or mandatory="true" name="user authentification/connexion">
+			<feature name="username/password"/>
+			<or name="bindings">
+				<feature name="github"/>
+				<feature name="google"/>
+				<feature name="facebook"/>
+				<feature name="twitter"/>
+			</or>
+		</or>
+		<and name="gamefications">
+			<graphics key="collapsed" value="false"/>
+			<feature name="scoreboard"/>
+			<feature name="daily challenges"/>
+		</and>
+		<and mandatory="true" name="user account">
+			<graphics key="collapsed" value="false"/>
+			<and mandatory="true" name="user grades">
+				<feature name="badges"/>
+				<and mandatory="true" name="grades">
+					<feature mandatory="true" name="per task"/>
+					<feature name="per tag"/>
+					<feature name="per topic"/>
+				</and>
+			</and>
+			<and mandatory="true" name="user parameters">
+				<feature mandatory="true" name="region"/>
+				<feature mandatory="true" name="dark/light mode"/>
+				<and name="problem preferences">
+					<feature name="topic preferences"/>
+					<feature name="tag preferences"/>
+					<feature name="problem type preferences"/>
+				</and>
+			</and>
+			<and mandatory="true" name="credits">
+				<and mandatory="true" name="Add credits">
+					<feature mandatory="true" name="watch add"/>
+					<feature mandatory="true" name="buy"/>
+					<feature name="finish daily challenges"/>
+				</and>
+				<and mandatory="true" name="use credits">
+					<feature mandatory="true" name="buy problems"/>
+					<feature name="buy basic premium"/>
+					<feature mandatory="true" name="buy hints"/>
+					<feature mandatory="true" name="buy more tries"/>
+				</and>
+			</and>
+			<alt name="premium">
+				<feature name="basic premium"/>
+				<feature name="advanced premium"/>
+				<feature name="full access"/>
+			</alt>
+		</and>
+	</and>
+</struct>
+<constraints>
+	<rule>
+		<imp>
+			<var>buy basic premium</var>
+			<var>basic premium</var>
+		</imp>
+	</rule>
+	<rule>
+		<imp>
+			<var>tags</var>
+			<var>tag</var>
+		</imp>
+	</rule>
+	<rule>
+		<imp>
+			<var>based on tags</var>
+			<var>tag preferences</var>
+		</imp>
+	</rule>
+	<rule>
+		<imp>
+			<disj>
+				<var>tag preferences</var>
+				<disj>
+					<var>search by tag</var>
+					<var>per tag</var>
+				</disj>
+			</disj>
+			<var>tags</var>
+		</imp>
+	</rule>
+	<rule>
+		<imp>
+			<var>based on topic</var>
+			<var>topic preferences</var>
+		</imp>
+	</rule>
+	<rule>
+		<imp>
+			<var>finish daily challenges</var>
+			<var>daily challenges</var>
+		</imp>
+	</rule>
+</constraints>
+</featureModel>

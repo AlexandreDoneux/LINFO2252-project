@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature automatic="selected" name="Learning platform"/>
+	<feature automatic="selected" name="feedback on task by user"/>
+	<feature automatic="selected" name="star system"/>
+	<feature name="precise feedback"/>
+	<feature automatic="selected" name="problem"/>
+	<feature automatic="selected" name="parameters"/>
+	<feature automatic="selected" name="type"/>
+	<feature name="code problem"/>
+	<feature name="MCQ"/>
+	<feature name="open question"/>
+	<feature name="exact value"/>
+	<feature name="connect the dots"/>
+	<feature automatic="selected" name="topic"/>
+	<feature name="tag"/>
+	<feature name="awnser limit"/>
+	<feature name="fixed number"/>
+	<feature name="number per hour"/>
+	<feature name="number per day"/>
+	<feature name="difficulty"/>
+	<feature name="teacher rating"/>
+	<feature name="score based"/>
+	<feature name="perceived by students"/>
+	<feature automatic="selected" name="automatic grading"/>
+	<feature automatic="selected" name="get grade"/>
+	<feature name="get feedback"/>
+	<feature name="generic"/>
+	<feature name="AI feedback"/>
+	<feature name="badge"/>
+	<feature name="problem help"/>
+	<feature name="predefined hint"/>
+	<feature name="AI hint"/>
+	<feature automatic="selected" name="problem set"/>
+	<feature automatic="selected" name="search"/>
+	<feature name="search by topic"/>
+	<feature name="search by tag"/>
+	<feature automatic="selected" name="proposed to the user"/>
+	<feature name="based on topic"/>
+	<feature name="based on tags"/>
+	<feature name="based on problem type"/>
+	<feature name="based on user feedbacks"/>
+	<feature name="based on user difficulties"/>
+	<feature automatic="selected" name="topics"/>
+	<feature name="tags"/>
+	<feature automatic="selected" name="user authentification/connexion"/>
+	<feature name="username/password"/>
+	<feature name="bindings"/>
+	<feature name="github"/>
+	<feature name="google"/>
+	<feature name="facebook"/>
+	<feature name="twitter"/>
+	<feature name="gamefications"/>
+	<feature name="scoreboard"/>
+	<feature name="daily challenges"/>
+	<feature automatic="selected" name="user account"/>
+	<feature automatic="selected" name="user grades"/>
+	<feature name="badges"/>
+	<feature automatic="selected" name="grades"/>
+	<feature automatic="selected" name="per task"/>
+	<feature name="per tag"/>
+	<feature name="per topic"/>
+	<feature automatic="selected" name="user parameters"/>
+	<feature automatic="selected" name="region"/>
+	<feature automatic="selected" name="dark/light mode"/>
+	<feature name="problem preferences"/>
+	<feature name="topic preferences"/>
+	<feature name="tag preferences"/>
+	<feature name="problem type preferences"/>
+	<feature automatic="selected" name="credits"/>
+	<feature automatic="selected" name="Add credits"/>
+	<feature automatic="selected" name="watch add"/>
+	<feature automatic="selected" name="buy"/>
+	<feature name="finish daily challenges"/>
+	<feature automatic="selected" name="use credits"/>
+	<feature automatic="selected" name="buy problems"/>
+	<feature name="buy basic premium"/>
+	<feature automatic="selected" name="buy hints"/>
+	<feature automatic="selected" name="buy more tries"/>
+	<feature name="premium"/>
+	<feature name="basic premium"/>
+	<feature name="advanced premium"/>
+	<feature name="full access"/>
+</configuration>
