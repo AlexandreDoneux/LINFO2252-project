@@ -21,29 +21,33 @@
 			<and mandatory="true" name="problem">
 				<graphics key="collapsed" value="false"/>
 				<and mandatory="true" name="parameters">
-					<alt mandatory="true" name="type">
+					<or mandatory="true" name="type">
 						<feature name="code problem"/>
 						<feature name="MCQ"/>
 						<feature name="open question"/>
 						<feature name="exact value"/>
 						<feature name="connect the dots"/>
-					</alt>
-					<feature mandatory="true" name="topic"/>
+					</or>
+					<and mandatory="true" name="topic">
+						<feature mandatory="true" name="language course"/>
+						<feature mandatory="true" name="innovation course"/>
+						<feature mandatory="true" name="clean code course"/>
+					</and>
 					<feature name="tag"/>
-					<alt name="awnser limit">
+					<alt name="answer limit">
 						<feature name="fixed number"/>
 						<feature name="number per hour"/>
 						<feature name="number per day"/>
 					</alt>
 				</and>
-				<and name="difficulty">
+				<and mandatory="true" name="difficulty">
 					<feature mandatory="true" name="teacher rating"/>
 					<feature name="score based"/>
 					<feature name="perceived by students"/>
 				</and>
 				<and mandatory="true" name="automatic grading">
-					<feature mandatory="true" name="get grade"/>
-					<or name="get feedback">
+					<feature mandatory="true" name="grade"/>
+					<or name="feedback">
 						<feature name="generic"/>
 						<feature name="AI feedback"/>
 					</or>
@@ -60,10 +64,10 @@
 			<and mandatory="true" name="problem set">
 				<graphics key="collapsed" value="false"/>
 				<or mandatory="true" name="search">
-					<feature name="search by topic"/>
-					<feature name="search by tag"/>
+					<feature name="topic search"/>
+					<feature name="tag search"/>
 				</or>
-				<or mandatory="true" name="proposed to the user">
+				<or mandatory="true" name="recommendations">
 					<feature name="based on topic"/>
 					<feature name="based on tags"/>
 					<feature name="based on problem type"/>
@@ -73,7 +77,7 @@
 				<feature mandatory="true" name="topics"/>
 				<feature name="tags"/>
 			</and>
-			<or mandatory="true" name="user authentification/connexion">
+			<or mandatory="true" name="user authentication">
 			<feature name="username/password"/>
 			<or name="bindings">
 				<feature name="github"/>
@@ -82,7 +86,7 @@
 				<feature name="twitter"/>
 			</or>
 		</or>
-		<and name="gamefications">
+		<and name="gamification">
 			<graphics key="collapsed" value="false"/>
 			<feature name="scoreboard"/>
 			<feature name="daily challenges"/>
@@ -106,17 +110,17 @@
 					<feature name="problem type preferences"/>
 				</and>
 			</and>
-			<and mandatory="true" name="credits">
-				<and mandatory="true" name="Add credits">
-					<feature mandatory="true" name="watch add"/>
-					<feature mandatory="true" name="buy"/>
-					<feature name="finish daily challenges"/>
+			<and name="credits">
+				<and mandatory="true" name="credit sources">
+					<feature mandatory="true" name="ads"/>
+					<feature mandatory="true" name="purchase"/>
+					<feature name="challenge rewards"/>
 				</and>
-				<and mandatory="true" name="use credits">
-					<feature mandatory="true" name="buy problems"/>
-					<feature name="buy basic premium"/>
-					<feature mandatory="true" name="buy hints"/>
-					<feature mandatory="true" name="buy more tries"/>
+				<and mandatory="true" name="credit uses">
+					<feature mandatory="true" name="extra problems"/>
+					<feature name="premium unlock"/>
+					<feature mandatory="true" name="extra hints"/>
+					<feature mandatory="true" name="extra tries"/>
 				</and>
 			</and>
 			<alt name="premium">
@@ -130,7 +134,7 @@
 <constraints>
 	<rule>
 		<imp>
-			<var>buy basic premium</var>
+			<var>premium unlock</var>
 			<var>basic premium</var>
 		</imp>
 	</rule>
@@ -151,7 +155,7 @@
 			<disj>
 				<var>tag preferences</var>
 				<disj>
-					<var>search by tag</var>
+					<var>tag search</var>
 					<var>per tag</var>
 				</disj>
 			</disj>
@@ -166,8 +170,38 @@
 	</rule>
 	<rule>
 		<imp>
-			<var>finish daily challenges</var>
+			<var>challenge rewards</var>
 			<var>daily challenges</var>
+		</imp>
+	</rule>
+	<rule>
+		<imp>
+			<var>AI hint</var>
+			<disj>
+				<var>premium</var>
+				<var>credits</var>
+			</disj>
+		</imp>
+	</rule>
+	<rule>
+		<imp>
+			<var>AI feedback</var>
+			<disj>
+				<var>premium</var>
+				<var>credits</var>
+			</disj>
+		</imp>
+	</rule>
+	<rule>
+		<imp>
+			<var>extra hints</var>
+			<var>problem help</var>
+		</imp>
+	</rule>
+	<rule>
+		<imp>
+			<var>extra tries</var>
+			<var>answer limit</var>
 		</imp>
 	</rule>
 </constraints>
