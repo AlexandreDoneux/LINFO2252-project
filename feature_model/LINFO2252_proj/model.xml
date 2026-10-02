@@ -21,18 +21,14 @@
 			<and mandatory="true" name="problem">
 				<graphics key="collapsed" value="false"/>
 				<and mandatory="true" name="parameters">
-					<or mandatory="true" name="type">
+					<alt mandatory="true" name="type">
 						<feature name="code problem"/>
 						<feature name="MCQ"/>
 						<feature name="open question"/>
 						<feature name="exact value"/>
 						<feature name="connect the dots"/>
-					</or>
-					<and mandatory="true" name="topic">
-						<feature mandatory="true" name="language course"/>
-						<feature mandatory="true" name="innovation course"/>
-						<feature mandatory="true" name="clean code course"/>
-					</and>
+					</alt>
+					<feature mandatory="true" name="topic"/>
 					<feature name="tag"/>
 					<alt name="answer limit">
 						<feature name="fixed number"/>
@@ -78,131 +74,131 @@
 				<feature name="tags"/>
 			</and>
 			<or mandatory="true" name="user authentication">
-			<feature name="username/password"/>
-			<or name="bindings">
-				<feature name="github"/>
-				<feature name="google"/>
-				<feature name="facebook"/>
-				<feature name="twitter"/>
+				<feature name="username/password"/>
+				<or name="bindings">
+					<feature name="github"/>
+					<feature name="google"/>
+					<feature name="facebook"/>
+					<feature name="twitter"/>
+				</or>
 			</or>
-		</or>
-		<and name="gamification">
-			<graphics key="collapsed" value="false"/>
-			<feature name="scoreboard"/>
-			<feature name="daily challenges"/>
+			<and name="gamification">
+				<graphics key="collapsed" value="false"/>
+				<feature name="scoreboard"/>
+				<feature name="daily challenges"/>
+			</and>
+			<and mandatory="true" name="user account">
+				<graphics key="collapsed" value="false"/>
+				<and mandatory="true" name="user grades">
+					<feature name="badges"/>
+					<and mandatory="true" name="grades">
+						<feature mandatory="true" name="per task"/>
+						<feature name="per tag"/>
+						<feature name="per topic"/>
+					</and>
+				</and>
+				<and mandatory="true" name="user parameters">
+					<feature mandatory="true" name="region"/>
+					<feature mandatory="true" name="dark/light mode"/>
+					<and name="problem preferences">
+						<feature name="topic preferences"/>
+						<feature name="tag preferences"/>
+						<feature name="problem type preferences"/>
+					</and>
+				</and>
+				<and name="credits">
+					<and mandatory="true" name="credit sources">
+						<feature mandatory="true" name="ads"/>
+						<feature mandatory="true" name="purchase"/>
+						<feature name="challenge rewards"/>
+					</and>
+					<and mandatory="true" name="credit uses">
+						<feature mandatory="true" name="extra problems"/>
+						<feature name="premium unlock"/>
+						<feature mandatory="true" name="extra hints"/>
+						<feature mandatory="true" name="extra tries"/>
+					</and>
+				</and>
+				<alt name="premium">
+					<feature name="basic premium"/>
+					<feature name="advanced premium"/>
+					<feature name="full access"/>
+				</alt>
+			</and>
 		</and>
-		<and mandatory="true" name="user account">
-			<graphics key="collapsed" value="false"/>
-			<and mandatory="true" name="user grades">
-				<feature name="badges"/>
-				<and mandatory="true" name="grades">
-					<feature mandatory="true" name="per task"/>
-					<feature name="per tag"/>
-					<feature name="per topic"/>
-				</and>
-			</and>
-			<and mandatory="true" name="user parameters">
-				<feature mandatory="true" name="region"/>
-				<feature mandatory="true" name="dark/light mode"/>
-				<and name="problem preferences">
-					<feature name="topic preferences"/>
-					<feature name="tag preferences"/>
-					<feature name="problem type preferences"/>
-				</and>
-			</and>
-			<and name="credits">
-				<and mandatory="true" name="credit sources">
-					<feature mandatory="true" name="ads"/>
-					<feature mandatory="true" name="purchase"/>
-					<feature name="challenge rewards"/>
-				</and>
-				<and mandatory="true" name="credit uses">
-					<feature mandatory="true" name="extra problems"/>
-					<feature name="premium unlock"/>
-					<feature mandatory="true" name="extra hints"/>
-					<feature mandatory="true" name="extra tries"/>
-				</and>
-			</and>
-			<alt name="premium">
-				<feature name="basic premium"/>
-				<feature name="advanced premium"/>
-				<feature name="full access"/>
-			</alt>
-		</and>
-	</and>
-</struct>
-<constraints>
-	<rule>
-		<imp>
-			<var>premium unlock</var>
-			<var>basic premium</var>
-		</imp>
-	</rule>
-	<rule>
-		<imp>
-			<var>tags</var>
-			<var>tag</var>
-		</imp>
-	</rule>
-	<rule>
-		<imp>
-			<var>based on tags</var>
-			<var>tag preferences</var>
-		</imp>
-	</rule>
-	<rule>
-		<imp>
-			<disj>
+	</struct>
+	<constraints>
+		<rule>
+			<imp>
+				<var>premium unlock</var>
+				<var>basic premium</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>tags</var>
+				<var>tag</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>based on tags</var>
 				<var>tag preferences</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
 				<disj>
-					<var>tag search</var>
-					<var>per tag</var>
+					<var>tag preferences</var>
+					<disj>
+						<var>tag search</var>
+						<var>per tag</var>
+					</disj>
 				</disj>
-			</disj>
-			<var>tags</var>
-		</imp>
-	</rule>
-	<rule>
-		<imp>
-			<var>based on topic</var>
-			<var>topic preferences</var>
-		</imp>
-	</rule>
-	<rule>
-		<imp>
-			<var>challenge rewards</var>
-			<var>daily challenges</var>
-		</imp>
-	</rule>
-	<rule>
-		<imp>
-			<var>AI hint</var>
-			<disj>
-				<var>premium</var>
-				<var>credits</var>
-			</disj>
-		</imp>
-	</rule>
-	<rule>
-		<imp>
-			<var>AI feedback</var>
-			<disj>
-				<var>premium</var>
-				<var>credits</var>
-			</disj>
-		</imp>
-	</rule>
-	<rule>
-		<imp>
-			<var>extra hints</var>
-			<var>problem help</var>
-		</imp>
-	</rule>
-	<rule>
-		<imp>
-			<var>extra tries</var>
-			<var>answer limit</var>
-		</imp>
-	</rule>
-</constraints>
+				<var>tags</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>based on topic</var>
+				<var>topic preferences</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>challenge rewards</var>
+				<var>daily challenges</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>AI hint</var>
+				<disj>
+					<var>premium</var>
+					<var>credits</var>
+				</disj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>AI feedback</var>
+				<disj>
+					<var>premium</var>
+					<var>credits</var>
+				</disj>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>extra hints</var>
+				<var>problem help</var>
+			</imp>
+		</rule>
+		<rule>
+			<imp>
+				<var>extra tries</var>
+				<var>answer limit</var>
+			</imp>
+		</rule>
+	</constraints>
 </featureModel>
